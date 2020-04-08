@@ -2,6 +2,8 @@ import React from 'react';
 import './GlobalDash.css';
 import BarExample from './bar';
 import {Pie} from 'react-chartjs-2';
+import {calculateRates} from '../calculators/rates';
+import {calculateTotalValue} from '../calculators/total';
 
 const barDataExample = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -40,7 +42,11 @@ const pieDataExample = {
 };
 
 export default class GlobalDash extends React.Component {
+
     render() {
+        const rates = calculateRates(this.props.dataCache);
+        const totals = calculateTotalValue(this.props.dataCache);
+
         return (
             <div className="Body">
                 <div className="Body-title">
@@ -49,16 +55,22 @@ export default class GlobalDash extends React.Component {
 
                 <div className="Body-row">
                     <div className="Body-4-cell">
+                        TotalConfirmed:&nbsp;{totals.TotalConfirmed}&nbsp;
+                        TotalDeaths:&nbsp;{totals.TotalDeaths}&nbsp;
+                        TotalRecovered:&nbsp;{totals.TotalRecovered}
                         <Pie data={pieDataExample} height={200} options={{maintainAspectRatio: false}}/>
                     </div>
                     <div className="Body-4-cell">
                         Infected rate for the last 3 days: 
+                        {rates.ConfirmedRate}
                     </div>
                     <div className="Body-4-cell">
                         Death rate for the last 3 days: 
+                        {rates.DeathsRate}
                     </div>
                     <div className="Body-4-cell">
                         Recovered rate for the last 3 days:
+                        {rates.RecoveredRate}
                     </div>
                 </div>
 
