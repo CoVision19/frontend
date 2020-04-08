@@ -1,25 +1,9 @@
 .App {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: top;
-  align-items: stretch;
-}
-
-.App-header {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #282c34;
-  height: auto;
-  text-align: center;
-  font-size: calc(18px + 2vmin);
   color: white;
-}
-
-.App-body {
-  background-color: #282c30;
-  color: white;
-  font-size: calc(12px + 2vmin);
-}
-
-.App-link {
-  color: #61dafb;
+  width: 100%;
+  display: inline-block;
+  padding: 0%;
+  margin: 0;
 }
