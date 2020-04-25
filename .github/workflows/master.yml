@@ -1,0 +1,43 @@
+# Continuous Deployment on every push to master.
+
+name: CD
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build_push:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build and push to GCR
+      uses: ThomFree/action_build_push_gcr@1.0
+      with:
+        image: gcr.io/covision19/frontend
+        project: covision19
+        region: us-west-1
+        service key: ${{ secrets.GCLOUD_AUTH }}
+
+  deploy:
+    needs: build_push
+    env:
+      DEPLOY_SSHKEY: ${{ secrets.DEPLOY_SSHKEY }}
+      GCLOUD_AUTH: ${{ secrets.GCLOUD_AUTH }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pull docker image
+        run: |
+          echo "$DEPLOY_SSHKEY" > private.key
+          chmod 400 ./private.key
+          ssh deploy-bot@covision19.thedoux.fr -o StrictHostKeyChecking=no -i ./private.key echo "\"$GCLOUD_AUTH\" | base64 --decode > gcloud.json"
+          ssh deploy-bot@covision19.thedoux.fr -o StrictHostKeyChecking=no -i ./private.key "gcloud auth activate-service-account --key-file=gcloud.json --project covision19"
+          ssh deploy-bot@covision19.thedoux.fr -o StrictHostKeyChecking=no -i ./private.key "gcloud auth configure-docker"
+          ssh deploy-bot@covision19.thedoux.fr -o StrictHostKeyChecking=no -i ./private.key "docker pull gcr.io/covision19/frontend"
+      - name: Run docker image
+        run: |
+          ssh deploy-bot@covision19.thedoux.fr -o StrictHostKeyChecking=no -i ./private.key "sudo docker stop covision19-frontend"
+          ssh deploy-bot@covision19.thedoux.fr -o StrictHostKeyChecking=no -i ./private.key "sudo docker system prune -f"
+          ssh deploy-bot@covision19.thedoux.fr -o StrictHostKeyChecking=no -i ./private.key "sudo docker run -p 8000:8000 --env PORT=8000 --name covision19-frontend -d gcr.io/covision19/frontend"
