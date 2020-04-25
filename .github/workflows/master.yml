@@ -19,20 +19,20 @@ jobs:
         image: gcr.io/covision19/frontend
         project: covision19
         region: us-west-1
-        service key: ${{ secrets.GCLOUD_AUTH }}
+        service key: ${{ secrets.GCLOUD_AUTH_UPLOAD }}
 
   deploy:
     needs: build_push
     env:
       DEPLOY_SSHKEY: ${{ secrets.DEPLOY_SSHKEY }}
-      GCLOUD_AUTH: ${{ secrets.GCLOUD_AUTH }}
+      GCLOUD_AUTH_RETRIEVE: ${{ secrets.GCLOUD_AUTH_RETRIEVE }}
     runs-on: ubuntu-latest
     steps:
       - name: Pull docker image
         run: |
           echo "$DEPLOY_SSHKEY" > private.key
           chmod 400 ./private.key
-          ssh deploy-bot@covision19.thedoux.fr -o StrictHostKeyChecking=no -i ./private.key echo "\"$GCLOUD_AUTH\" | base64 --decode > gcloud.json"
+          ssh deploy-bot@covision19.thedoux.fr -o StrictHostKeyChecking=no -i ./private.key echo "\"$GCLOUD_AUTH_RETRIEVE\" | base64 --decode > gcloud.json"
           ssh deploy-bot@covision19.thedoux.fr -o StrictHostKeyChecking=no -i ./private.key "gcloud auth activate-service-account --key-file=gcloud.json --project covision19"
           ssh deploy-bot@covision19.thedoux.fr -o StrictHostKeyChecking=no -i ./private.key "gcloud auth configure-docker"
           ssh deploy-bot@covision19.thedoux.fr -o StrictHostKeyChecking=no -i ./private.key "docker pull gcr.io/covision19/frontend"
