@@ -3,7 +3,7 @@ import './Page.css';
 import Header from './Header';
 import GlobalDash from './GlobalDash';
 
-const API_URL = 'http://localhost:3000'
+const API_URL = 'https://api.covision19.thedoux.fr';
 
 export default class Page extends React.Component {
     constructor(props) {
