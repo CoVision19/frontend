@@ -4,6 +4,7 @@ import BarExample from './bar';
 import {Pie} from 'react-chartjs-2';
 import {calculateRates} from '../calculators/rates';
 import {calculateTotalValue} from '../calculators/total';
+import {numberWithCommas} from '../utils/numberUtils';
 
 const barDataExample = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -23,6 +24,7 @@ const barDataExample = {
 export default class GlobalDash extends React.Component {
 
     render() {
+
         const rates = calculateRates(this.props.dataCache);
         const totals = calculateTotalValue(this.props.dataCache);
         const totalActive = totals.TotalConfirmed - (totals.TotalRecovered + totals.TotalDeaths);
@@ -52,23 +54,22 @@ export default class GlobalDash extends React.Component {
                 <div className="Body-title">
                     Global Statistics
                 </div>
-
                 <div className="Body-row">
                     <div className="Body-4-cell">
                         <Pie data={pieTotalsData} height={200} options={{maintainAspectRatio: false}}/>
-                        <p>Total Confirmed:&nbsp;{totals.TotalConfirmed}</p>
+                        <p>Total Confirmed:&nbsp;{numberWithCommas(totals.TotalConfirmed)}</p>
                     </div>
                     <div className="Body-4-cell">
                         Infected rate for the last 3 days: 
-                        &nbsp;{rates.ConfirmedRate}
+                        &nbsp;{numberWithCommas(rates.ConfirmedRate)}
                     </div>
                     <div className="Body-4-cell">
                         Death rate for the last 3 days: 
-                        &nbsp;{rates.DeathsRate}
+                        &nbsp;{numberWithCommas(rates.DeathsRate)}
                     </div>
                     <div className="Body-4-cell">
                         Recovered rate for the last 3 days:
-                        &nbsp;{rates.RecoveredRate}
+                        &nbsp;{numberWithCommas(rates.RecoveredRate)}
                     </div>
                 </div>
 
