@@ -15,7 +15,7 @@ export default class PieGlobalStats extends React.Component {
                 callbacks: {
                     label: function(tooltipItem, data) {
                         let value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
-                        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                        return value.toLocaleString();
                     }
                 }
             }
