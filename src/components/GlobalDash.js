@@ -1,7 +1,7 @@
 import React from 'react';
 import './GlobalDash.css';
 import BarExample from './bar';
-import {Pie} from 'react-chartjs-2';
+import PieGlobalStats from './pie';
 import {calculateRates} from '../calculators/rates';
 import {calculateTotalValue} from '../calculators/total';
 
@@ -23,7 +23,6 @@ const barDataExample = {
 export default class GlobalDash extends React.Component {
 
     render() {
-
         const rates = calculateRates(this.props.dataCache);
         const totals = calculateTotalValue(this.props.dataCache);
         const totalActive = totals.TotalConfirmed - (totals.TotalRecovered + totals.TotalDeaths);
@@ -55,7 +54,7 @@ export default class GlobalDash extends React.Component {
                 </div>
                 <div className="Body-row">
                     <div className="Body-4-cell">
-                        <Pie data={pieTotalsData} height={200} options={{maintainAspectRatio: false}}/>
+                        <PieGlobalStats data={pieTotalsData} height={200}/>
                         <p>Total Confirmed:&nbsp;{totals.TotalConfirmed.toLocaleString()}</p>
                     </div>
                     <div className="Body-4-cell">
