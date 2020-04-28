@@ -20,32 +20,32 @@ const barDataExample = {
     ]
 };
 
-const pieDataExample = {
-	labels: [
-		'Red',
-		'Blue',
-		'Yellow'
-	],
-	datasets: [{
-		data: [300, 50, 100],
-		backgroundColor: [
-		'#FF6384',
-		'#36A2EB',
-		'#FFCE56'
-		],
-		hoverBackgroundColor: [
-		'#c0c0c0',
-		'#c0c0c0',
-		'#c0c0c0'
-		]
-	}]
-};
-
 export default class GlobalDash extends React.Component {
 
     render() {
         const rates = calculateRates(this.props.dataCache);
         const totals = calculateTotalValue(this.props.dataCache);
+        const totalActive = totals.TotalConfirmed - (totals.TotalRecovered + totals.TotalDeaths);
+        const pieTotalsData = {
+            labels: [
+                'Deaths',
+                'Recovered',
+                'Active'
+            ],
+            datasets: [{
+                data: [totals.TotalDeaths, totals.TotalRecovered, totalActive],
+                backgroundColor: [
+                '#FF6384',
+                '#6EDB56',
+                '#FFCE56'
+                ],
+                hoverBackgroundColor: [
+                '#c0c0c0',
+                '#c0c0c0',
+                '#c0c0c0'
+                ]
+            }]
+        };
 
         return (
             <div className="Body">
@@ -55,22 +55,20 @@ export default class GlobalDash extends React.Component {
 
                 <div className="Body-row">
                     <div className="Body-4-cell">
-                        TotalConfirmed:&nbsp;{totals.TotalConfirmed}&nbsp;
-                        TotalDeaths:&nbsp;{totals.TotalDeaths}&nbsp;
-                        TotalRecovered:&nbsp;{totals.TotalRecovered}
-                        <Pie data={pieDataExample} height={200} options={{maintainAspectRatio: false}}/>
+                        <Pie data={pieTotalsData} height={200} options={{maintainAspectRatio: false}}/>
+                        <p>Total Confirmed:&nbsp;{totals.TotalConfirmed}</p>
                     </div>
                     <div className="Body-4-cell">
                         Infected rate for the last 3 days: 
-                        {rates.ConfirmedRate}
+                        &nbsp;{rates.ConfirmedRate}
                     </div>
                     <div className="Body-4-cell">
                         Death rate for the last 3 days: 
-                        {rates.DeathsRate}
+                        &nbsp;{rates.DeathsRate}
                     </div>
                     <div className="Body-4-cell">
                         Recovered rate for the last 3 days:
-                        {rates.RecoveredRate}
+                        &nbsp;{rates.RecoveredRate}
                     </div>
                 </div>
 

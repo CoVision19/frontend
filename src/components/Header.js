@@ -11,7 +11,6 @@ export default class Header extends React.Component {
                 <span className="Header-left">
                     <img src={logo} alt="CoVision19 Logo" className="inner Header-image"/>
                     <div className="inner Header-title">CoVision19</div>
-                    <div className="inner Header-subtitle">- USEFUL STATISTICS</div>
                 </span>
 
                 <div className="Header-middle">
