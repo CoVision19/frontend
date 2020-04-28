@@ -4,7 +4,6 @@ import BarExample from './bar';
 import {Pie} from 'react-chartjs-2';
 import {calculateRates} from '../calculators/rates';
 import {calculateTotalValue} from '../calculators/total';
-import {numberWithCommas} from '../utils/numberUtils';
 
 const barDataExample = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -57,19 +56,19 @@ export default class GlobalDash extends React.Component {
                 <div className="Body-row">
                     <div className="Body-4-cell">
                         <Pie data={pieTotalsData} height={200} options={{maintainAspectRatio: false}}/>
-                        <p>Total Confirmed:&nbsp;{numberWithCommas(totals.TotalConfirmed)}</p>
+                        <p>Total Confirmed:&nbsp;{totals.TotalConfirmed.toLocaleString()}</p>
                     </div>
                     <div className="Body-4-cell">
                         Infected rate for the last 3 days: 
-                        &nbsp;{numberWithCommas(rates.ConfirmedRate)}
+                        &nbsp;{rates.ConfirmedRate.toLocaleString()}
                     </div>
                     <div className="Body-4-cell">
                         Death rate for the last 3 days: 
-                        &nbsp;{numberWithCommas(rates.DeathsRate)}
+                        &nbsp;{rates.DeathsRate.toLocaleString()}
                     </div>
                     <div className="Body-4-cell">
                         Recovered rate for the last 3 days:
-                        &nbsp;{numberWithCommas(rates.RecoveredRate)}
+                        &nbsp;{rates.RecoveredRate.toLocaleString()}
                     </div>
                 </div>
 
