@@ -1,9 +1,9 @@
 import React from 'react';
 import './GlobalDash.css';
-import BarExample from './bar';
+import MyBar from './bar';
 import PieGlobalStats from './pie';
-import {calculateRates} from '../calculators/rates';
-import {calculateTotalValue} from '../calculators/total';
+import { calculateRates } from '../calculators/rates';
+import { calculateTotalValue } from '../calculators/total';
 import NumericLabel from 'react-pretty-numbers';
 
 const barDataExample = {
@@ -31,11 +31,11 @@ export default class GlobalDash extends React.Component {
             'cssClass':['BigNumber', 'YellowText']
             };
         let optionRed = {
-                'justification': 'L',
-                'locales': 'en-US',
-                'shortFormat': true,
-                'cssClass':['BigNumber', 'RedText']
-                };
+            'justification': 'L',
+            'locales': 'en-US',
+            'shortFormat': true,
+            'cssClass':['BigNumber', 'RedText']
+            };
         let optionGreen = {
             'justification': 'L',
             'locales': 'en-US',
@@ -76,39 +76,42 @@ export default class GlobalDash extends React.Component {
         return (
             <div className="Body">
                 <div className="Body-title">
-                    Whole World
+                    Whole&nbsp;World
                 </div>
                 <div className="Body-row">
-                    <div className="Body-4-cell">
+                    <div className="Body-5-cell">
                         <PieGlobalStats data={pieTotalsData} height={200}/>
                     </div>
-                    <div className="Body-4-cell BlueText">
+                    <div className="Body-5-cell BlueText">
                         <NumericLabel params={optionBlue}>{totals.TotalConfirmed}</NumericLabel>
                         <br /><br />Infected persons in the world
                     </div>
-                    <div className="Body-4-cell GreenText">
+                    <div className="Body-5-cell GreenText">
                         <NumericLabel params={optionGreen}>{rates.ConfirmedRate}</NumericLabel>
                         <br /><br />New infected persons today
                     </div>
-                    <div className="Body-4-cell YellowText">
+                    <div className="Body-5-cell YellowText">
                         <NumericLabel params={optionYel}>{rates.RecoveredRate}</NumericLabel>
                         <br /><br />Recovered patients today
                     </div>
-                    <div className="Body-4-cell RedText">
+                    <div className="Body-5-cell RedText">
                         <NumericLabel params={optionRed}>{rates.DeathsRate}</NumericLabel>
                         <br /><br />People died today
                     </div>
                 </div>
 
                 <div className="Body-row">
-                    <div className="Body-3-cell">
-                        <BarExample data={barDataExample} height={200}/>
+                    <div className="Body-4-cell">
+                        <MyBar data={barDataExample} height={200}/>
                     </div>
-                    <div className="Body-3-cell">
-                        <BarExample data={barDataExample} height={200}/>
+                    <div className="Body-4-cell">
+                        <MyBar data={barDataExample} height={200}/>
                     </div>
-                    <div className="Body-3-cell">
-                        <BarExample data={barDataExample} height={200}/>
+                    <div className="Body-4-cell">
+                        <MyBar data={barDataExample} height={200}/>
+                    </div>
+                    <div className="Body-4-cell">
+                        <MyBar data={barDataExample} height={200}/>
                     </div>
                 </div>
             </div>

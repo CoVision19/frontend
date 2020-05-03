@@ -1,7 +1,7 @@
 .Header {
     background-color: #212d74;
     text-align: left;
-    font-size: 14px;
+    font-size: 1.2vw;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -30,12 +30,12 @@
 
 .Header-image {
     padding-left: 1%;
-    height: 50px;
+    height: 60px;
 }
 
 .Header-title {
     color: white;
-    font-size: 28px;
+    font-size: 2vw;
 }
 
 .Header-subtitle {
