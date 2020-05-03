@@ -9,15 +9,35 @@ export default class Page extends React.Component {
     constructor(props) {
         super(props);
 
+        this.updateDate = this.updateDate.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
         this.state = {
             data: {},
-            countries: []
+            countries: [],
+            from: undefined,
+            to: undefined
         };
     }
 
+    // This function is sent to the "Header.js" component,
+    // it is a callback responsible for changing the front according to the date
+    updateDate(from, to) {
+        this.setState({
+            from: from,
+            to: to
+        }, this.componentDidMount)
+    }
+
+    formatDateISOtoYMD(date) {
+		var splitter = date.toISOString().split('T')[0].split('-');
+		return splitter[0] + '-' + splitter[1] + '-' + splitter[2];
+	}
+
     componentDidMount() {
+        if (!this.state.from || !this.state.to)
+            return;
         // TODO Manage error
-        fetch(API_URL + '/timeline/daterange/2020-04-01_2020-04-09')
+        fetch(API_URL + '/timeline/daterange/' + this.formatDateISOtoYMD(this.state.from) + '_' + this.formatDateISOtoYMD(this.state.to))
             .then(response => response.json())
             .then((data) => {
                 this.setState({ data: data.data });
@@ -34,7 +54,7 @@ export default class Page extends React.Component {
     render() {
         return (
             <div>
-                <Header />
+                <Header updateDateCallback={ this.updateDate } />
                 <GlobalDash dataCache={this.state.data} countryCache={this.state.countries}/>
             </div>
         );

@@ -9,12 +9,18 @@ import { formatDate, parseDate } from 'react-day-picker/moment';
 export default class Header extends React.Component {
     constructor(props) {
         super(props);
+        let today = new Date();
+        let before = new Date(today.getTime() - (24*60*60*1000) * 3);
+
         this.handleFromChange = this.handleFromChange.bind(this);
         this.handleToChange = this.handleToChange.bind(this);
+        this.refresh = this.refresh.bind(this);
+        this.updateDate = this.props.updateDateCallback;
         this.state = {
-          from: undefined,
-          to: undefined
+          from: before,
+          to: today
         };
+        this.updateDate(this.state.from, this.state.to);
     }
 
     showFromMonth() {
@@ -25,11 +31,16 @@ export default class Header extends React.Component {
         if (moment(to).diff(moment(from), 'months') < 2) {
           this.to.getDayPicker().showMonth(from);
         }
+        this.updateDate(from, to);
+      }
+
+      refresh() {
+          this.updateDate(this.state.from, this.state.to);
       }
     
       handleFromChange(from) {
         // Change the from date and focus the "to" input field
-        this.setState({ from });
+        this.setState({ from }, this.refresh);
       }
     
       handleToChange(to) {
