@@ -24,9 +24,11 @@
 
 .Body-4-cell {
     display: inline-block;
+    vertical-align: middle;
     width: 18%;
     padding-left: 1%;
     padding-right: 1%;
+    text-align: center;
 }
 
 .Body-3-cell {
@@ -34,4 +36,24 @@
     width: 30%;
     padding-left: 1%;
     padding-right: 1%;
+}
+
+.BigNumber {
+    font-size: 40px;
+}
+
+.RedText {
+    color: #FF91C5;
+}
+
+.YellowText {
+    color: #FFCD5E;
+}
+
+.BlueText {
+    color: #78A5FF;
+}
+
+.GreenText {
+    color: #6BFF6E;
 }

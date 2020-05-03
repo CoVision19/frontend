@@ -76,7 +76,7 @@ export default class Header extends React.Component {
                                 onDayClick: () => this.to.getInput().focus(),
                             }}
                             onDayChange={this.handleFromChange}
-                        />
+                        />&nbsp;&nbsp;&nbsp;
                         <span className="InputFromTo-to">
                         {' To: '}
                         <DayPickerInput

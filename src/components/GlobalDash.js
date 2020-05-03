@@ -4,6 +4,7 @@ import BarExample from './bar';
 import PieGlobalStats from './pie';
 import {calculateRates} from '../calculators/rates';
 import {calculateTotalValue} from '../calculators/total';
+import NumericLabel from 'react-pretty-numbers';
 
 const barDataExample = {
     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -23,6 +24,30 @@ const barDataExample = {
 export default class GlobalDash extends React.Component {
 
     render() {
+        let optionYel = {
+            'justification': 'L',
+            'locales': 'en-US',
+            'shortFormat': true,
+            'cssClass':['BigNumber', 'YellowText']
+            };
+        let optionRed = {
+                'justification': 'L',
+                'locales': 'en-US',
+                'shortFormat': true,
+                'cssClass':['BigNumber', 'RedText']
+                };
+        let optionGreen = {
+            'justification': 'L',
+            'locales': 'en-US',
+            'shortFormat': true,
+            'cssClass':['BigNumber', 'GreenText']
+            };
+        let optionBlue = {
+            'justification': 'L',
+            'locales': 'en-US',
+            'shortFormat': true,
+            'cssClass':['BigNumber', 'BlueText']
+            };
         const rates = calculateRates(this.props.dataCache);
         const totals = calculateTotalValue(this.props.dataCache);
         const totalActive = totals.TotalConfirmed - (totals.TotalRecovered + totals.TotalDeaths);
@@ -51,27 +76,27 @@ export default class GlobalDash extends React.Component {
         return (
             <div className="Body">
                 <div className="Body-title">
-                    Global Statistics
+                    Whole World
                 </div>
                 <div className="Body-row">
                     <div className="Body-4-cell">
                         <PieGlobalStats data={pieTotalsData} height={200}/>
                     </div>
-                    <div className="Body-4-cell">
-                        Total Confirmed:
-                        &nbsp;{totals.TotalConfirmed.toLocaleString()}
+                    <div className="Body-4-cell BlueText">
+                        <NumericLabel params={optionBlue}>{totals.TotalConfirmed}</NumericLabel>
+                        <br /><br />Infected persons in the world
                     </div>
-                    <div className="Body-4-cell">
-                        Infected rate for the last 3 days: 
-                        &nbsp;{rates.ConfirmedRate.toLocaleString()}
+                    <div className="Body-4-cell GreenText">
+                        <NumericLabel params={optionGreen}>{rates.ConfirmedRate}</NumericLabel>
+                        <br /><br />New infected persons today
                     </div>
-                    <div className="Body-4-cell">
-                        Death rate for the last 3 days: 
-                        &nbsp;{rates.DeathsRate.toLocaleString()}
+                    <div className="Body-4-cell YellowText">
+                        <NumericLabel params={optionYel}>{rates.RecoveredRate}</NumericLabel>
+                        <br /><br />Recovered patients today
                     </div>
-                    <div className="Body-4-cell">
-                        Recovered rate for the last 3 days:
-                        &nbsp;{rates.RecoveredRate.toLocaleString()}
+                    <div className="Body-4-cell RedText">
+                        <NumericLabel params={optionRed}>{rates.DeathsRate}</NumericLabel>
+                        <br /><br />People died today
                     </div>
                 </div>
 
