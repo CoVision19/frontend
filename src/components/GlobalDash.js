@@ -61,7 +61,7 @@ export default class GlobalDash extends React.Component {
                 data: [totals.TotalDeaths, totals.TotalRecovered, totalActive],
                 backgroundColor: [
                 '#FF91C5',
-                '#78A5FF',
+                '#6BFF6E',
                 '#FFCD5E'
                 ],
                 hoverBackgroundColor: [
@@ -102,16 +102,16 @@ export default class GlobalDash extends React.Component {
 
                 <div className="Body-row">
                     <div className="Body-4-cell">
-                        <MyBar data={barDataExample} height={200}/>
+                        <MyBar data={barDataExample} height={250}/>
                     </div>
                     <div className="Body-4-cell">
-                        <MyBar data={barDataExample} height={200}/>
+                        <MyBar data={barDataExample} height={250}/>
                     </div>
                     <div className="Body-4-cell">
-                        <MyBar data={barDataExample} height={200}/>
+                        <MyBar data={barDataExample} height={250}/>
                     </div>
                     <div className="Body-4-cell">
-                        <MyBar data={barDataExample} height={200}/>
+                        <MyBar data={barDataExample} height={250}/>
                     </div>
                 </div>
             </div>
