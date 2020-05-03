@@ -35,15 +35,16 @@ export default class GlobalDash extends React.Component {
             datasets: [{
                 data: [totals.TotalDeaths, totals.TotalRecovered, totalActive],
                 backgroundColor: [
-                '#FF6384',
-                '#6EDB56',
-                '#FFCE56'
+                '#FF91C5',
+                '#78A5FF',
+                '#FFCD5E'
                 ],
                 hoverBackgroundColor: [
                 '#c0c0c0',
                 '#c0c0c0',
                 '#c0c0c0'
-                ]
+                ],
+                borderWidth: 0,
             }]
         };
 
@@ -55,7 +56,10 @@ export default class GlobalDash extends React.Component {
                 <div className="Body-row">
                     <div className="Body-4-cell">
                         <PieGlobalStats data={pieTotalsData} height={200}/>
-                        <p>Total Confirmed:&nbsp;{totals.TotalConfirmed.toLocaleString()}</p>
+                    </div>
+                    <div className="Body-4-cell">
+                        Total Confirmed:
+                        &nbsp;{totals.TotalConfirmed.toLocaleString()}
                     </div>
                     <div className="Body-4-cell">
                         Infected rate for the last 3 days: 

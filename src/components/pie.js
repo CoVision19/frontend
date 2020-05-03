@@ -1,5 +1,8 @@
 import React from 'react';
 import {Pie} from 'react-chartjs-2';
+import {Chart} from 'react-chartjs-2';
+
+Chart.defaults.global.defaultFontColor = "#fff";
 
 export default class PieGlobalStats extends React.Component {
 
@@ -18,6 +21,9 @@ export default class PieGlobalStats extends React.Component {
                         return value.toLocaleString();
                     }
                 }
+            },
+            legend: {
+              position: 'bottom'
             }
           }}
         />
