@@ -1,7 +1,7 @@
 import React from 'react';
 import NumericLabel from 'react-pretty-numbers';
-
 import './GlobalDash.css';
+
 import MyBar from './bar';
 import PieGlobalStats from './pie';
 import MyLine from './line';

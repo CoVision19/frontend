@@ -24,7 +24,8 @@ export default class Page extends React.Component {
     updateDate(from, to) {
         this.setState({
             from: from,
-            to: to
+            to: to,
+            isLoading: true
         }, this.componentDidMount)
     }
 
@@ -36,7 +37,7 @@ export default class Page extends React.Component {
     componentDidMount() {
         if (!this.state.from || !this.state.to)
             return;
-        // TODO Manage error
+        this.setState({ isLoading: true });
         fetch(API_URL + '/timeline/daterange/' + this.formatDateISOtoYMD(this.state.from) + '_' + this.formatDateISOtoYMD(this.state.to))
             .then(response => response.json())
             .then((data) => {
@@ -44,17 +45,24 @@ export default class Page extends React.Component {
                 fetch(API_URL + '/location')
                     .then(response => response.json())
                     .then((countries) => {
-                        this.setState({ countries: countries.data });
+                        this.setState({
+                            countries: countries.data,
+                            isLoading: false
+                        });
                         console.log('State: ');
                         console.log(this.state);
+                    }).catch(err => {
+                        this.setState({ isLoading: false });
                     });
+            }).catch(err => {
+                this.setState({ isLoading: false });
             });
     }
 
     render() {
         return (
             <div>
-                <Header updateDateCallback={ this.updateDate } />
+                <Header updateDateCallback={ this.updateDate } LoaderVisible={ this.state.isLoading } />
                 <GlobalDash dataCache={this.state.data} countryCache={this.state.countries}/>
             </div>
         );

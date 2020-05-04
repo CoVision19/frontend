@@ -16,16 +16,26 @@
 }
 
 .Header-left {
-    width: 40%;
+    vertical-align: middle;
+    white-space: nowrap;
     display: inline-block;
+    width: 30%;
 }
 
 .Header-middle {
-    width: 50%;
+    text-align: center;
+    display: inline-block;
+    white-space: nowrap;
+    width: 40%;
 }
 
 .Header-right {
+    text-align: right;
+    vertical-align: middle;
+    white-space: nowrap;
+    display: inline-block;
     padding-right: 1%;
+    width: 30%;
 }
 
 .Header-image {
@@ -38,15 +48,14 @@
     font-size: 2vw;
 }
 
-.Header-subtitle {
-    color: #a9a9a9;
-    font-size: 15px;
-}
-
 .Header-icon {
     padding-left: 1%;
     height: 30px;
     fill: white;
+}
+
+.Header-loader {
+    padding-left: 5%;
 }
 
 .InputFromTo .DayPicker-Day--selected:not(.DayPicker-Day--start):not(.DayPicker-Day--end):not(.DayPicker-Day--outside) {
@@ -58,7 +67,6 @@
     border-radius: 0 !important;
 }
 .InputFromTo .DayPicker-Day--start {
-    
     border-top-left-radius: 50% !important;
     border-bottom-left-radius: 50% !important;
 }

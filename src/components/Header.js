@@ -1,10 +1,13 @@
 import React from 'react';
-import './Header.css';
-import logo from '../images/logo.png';
 import moment from 'moment';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
+import Loader from 'react-loader-spinner'
+import './Header.css';
 import 'react-day-picker/lib/style.css';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+
 import { formatDate, parseDate } from 'react-day-picker/moment';
+import logo from '../images/logo.png';
 
 export default class Header extends React.Component {
     constructor(props) {
@@ -98,6 +101,7 @@ export default class Header extends React.Component {
                             onDayChange={this.handleToChange}
                         />
                         </span>
+                        <Loader className="inner Header-loader" type="Oval" color="#FFFFFF" height={30} width={30} visible={this.props.LoaderVisible} />
                     </div>
                 </div>
 
