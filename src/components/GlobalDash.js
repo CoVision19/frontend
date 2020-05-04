@@ -23,30 +23,6 @@ const barDataExample = {
     ]
 };
 
-const lineDataExample = {
-    labels: ['05/01', '06/01', '07/01'],
-    datasets: [
-      {
-        label: 'Deaths',
-        backgroundColor: 'rgba(0,0,0,0)',
-        borderColor: 'rgba(255,99,132,1)',
-        borderWidth: 2,
-        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-        hoverBorderColor: 'rgba(255,99,132,1)',
-        data: [65, 59, 80]
-      },
-      {
-        label: 'Recovered',
-        backgroundColor: 'rgba(0,0,0,0)',
-        borderColor: 'rgba(255,99,132,1)',
-        borderWidth: 2,
-        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-        hoverBorderColor: 'rgba(255,99,132,1)',
-        data: [70, 30, 100]
-      }
-    ]
-};
-
 export default class GlobalDash extends React.Component {
 
     render() {
