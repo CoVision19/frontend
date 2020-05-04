@@ -10,7 +10,8 @@ export default class Header extends React.Component {
     constructor(props) {
         super(props);
         let today = new Date();
-        let before = new Date(today.getTime() - (24*60*60*1000) * 3);
+        let before = new Date(today.getTime() - (24*60*60*1000) * 5);
+        let yesterday = new Date(today.getTime() - (24*60*60*1000) * 1);
 
         this.handleFromChange = this.handleFromChange.bind(this);
         this.handleToChange = this.handleToChange.bind(this);
@@ -18,7 +19,7 @@ export default class Header extends React.Component {
         this.updateDate = this.props.updateDateCallback;
         this.state = {
           from: before,
-          to: today
+          to: yesterday
         };
         this.updateDate(this.state.from, this.state.to);
     }

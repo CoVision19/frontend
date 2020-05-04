@@ -10,7 +10,10 @@ export default class MyBar extends React.Component {
           data={this.props.data}
           height={this.props.height}
           options={{
-            maintainAspectRatio: false
+            maintainAspectRatio: false,
+            legend: {
+              position: 'bottom'
+            }
           }}
         />
       </div>
