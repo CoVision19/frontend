@@ -1,4 +1,5 @@
 import {isEmpty, sumDay} from './basics';
+import moment from 'moment';
 
 export function calculateTotalValue(data) {
     let lastDay = null;
@@ -33,6 +34,9 @@ export function calculateTotalForEachDay(data) {
         res.Active.push(tmp.TotalConfirmed - tmp.TotalDeaths - tmp.TotalDeaths);
         res.Deaths.push(tmp.TotalDeaths);
         res.Recovered.push(tmp.TotalRecovered);
+    }
+    for (let key in res.days) {
+        res.days[key] = moment(new Date(res.days[key])).format('dddd, MMMM Do');
     }
     return res;
 }
