@@ -5,6 +5,7 @@ import GlobalDash from './GlobalDash';
 import CountryDash from './CountryDash';
 
 const API_URL = 'https://api.covision19.thedoux.fr';
+//const API_URL = 'http://localhost:3000';
 
 export default class Page extends React.Component {
     constructor(props) {
@@ -12,6 +13,7 @@ export default class Page extends React.Component {
 
         this.updateDate = this.updateDate.bind(this);
         this.changePage = this.changePage.bind(this);
+        this.disableLoading = this.disableLoading.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
         this.state = {
             data: {},
@@ -24,7 +26,14 @@ export default class Page extends React.Component {
 
     changePage() {
         this.setState({
+            isLoading: true,
             showGlobal: !this.state.showGlobal
+        }, () => {console.log(this.state);});
+    }
+
+    disableLoading() {
+        this.setState({
+            isLoading: false
         });
     }
 
@@ -69,9 +78,9 @@ export default class Page extends React.Component {
     }
 
     render() {
-        let content = <CountryDash dataCache={this.state.data} countryCache={this.state.countries}/>
+        let content = <CountryDash dataCache={this.state.data} countryCache={this.state.countries} disableLoadingCallback={this.disableLoading}/>
         if (this.state.showGlobal)
-            content = <GlobalDash dataCache={this.state.data} countryCache={this.state.countries}/>
+            content = <GlobalDash dataCache={this.state.data} countryCache={this.state.countries} disableLoadingCallback={this.disableLoading}/>
 
         return (
             <div>

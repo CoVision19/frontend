@@ -10,6 +10,10 @@ import { calculateTotalValue, calculateTotalForEachDay, calculateTotalForTop5 } 
 
 export default class GlobalDash extends React.Component {
 
+    componentDidMount() {
+        this.props.disableLoadingCallback();
+    }
+
     render() {
         const rates = calculateRates(this.props.dataCache);
         const totals = calculateTotalValue(this.props.dataCache);
@@ -138,19 +142,27 @@ export default class GlobalDash extends React.Component {
                         <PieGlobalStats data={pieTotalsData} height={200}/>
                     </div>
                     <div className="Body-5-cell BlueText">
-                        <NumericLabel params={optionBlue}>{totals.TotalConfirmed}</NumericLabel>
+                        <div className="BigNumber">
+                            <NumericLabel params={optionBlue}>{totals.TotalConfirmed}</NumericLabel>
+                        </div>
                         <br /><br />Infected persons in the world
                     </div>
                     <div className="Body-5-cell YellowText">
-                        <NumericLabel params={optionYel}>{rates.ConfirmedRate}</NumericLabel>
+                        <div className="BigNumber">
+                            +<NumericLabel params={optionYel}>{rates.ConfirmedRate}</NumericLabel>
+                        </div>
                         <br /><br />New infected persons today
                     </div>
                     <div className="Body-5-cell GreenText">
-                        <NumericLabel params={optionGreen}>{rates.RecoveredRate}</NumericLabel>
+                        <div className="BigNumber">
+                            +<NumericLabel params={optionGreen}>{rates.RecoveredRate}</NumericLabel>
+                        </div>
                         <br /><br />Recovered patients today
                     </div>
                     <div className="Body-5-cell RedText">
-                        <NumericLabel params={optionRed}>{rates.DeathsRate}</NumericLabel>
+                        <div className="BigNumber">
+                            +<NumericLabel params={optionRed}>{rates.DeathsRate}</NumericLabel>
+                        </div>
                         <br /><br />People died today
                     </div>
                 </div>
@@ -185,23 +197,27 @@ const optionYel = {
     'justification': 'L',
     'locales': 'en-US',
     'shortFormat': true,
-    'cssClass':['BigNumber', 'YellowText']
+    'cssClass':['BigNumber', 'YellowText'],
+    'prefix': '+'
     };
 const optionRed = {
     'justification': 'L',
     'locales': 'en-US',
     'shortFormat': true,
-    'cssClass':['BigNumber', 'RedText']
+    'cssClass':['BigNumber', 'RedText'],
+    'prefix': '+'
     };
 const optionGreen = {
     'justification': 'L',
     'locales': 'en-US',
     'shortFormat': true,
-    'cssClass':['BigNumber', 'GreenText']
+    'cssClass':['BigNumber', 'GreenText'],
+    'prefix': '+'
     };
 const optionBlue = {
     'justification': 'L',
     'locales': 'en-US',
     'shortFormat': true,
-    'cssClass':['BigNumber', 'BlueText']
+    'cssClass':['BigNumber', 'BlueText'],
+    'prefix': '+'
     };
