@@ -13,3 +13,16 @@
     padding-top: 6%;
     padding-bottom: 0%;
 }
+
+.Country-selector {
+    color: black;
+    text-align: center;
+    width: 100%;
+    padding-top: 3%;
+    padding-bottom: 2%;;
+}
+
+.Country-size {
+    width: 30%;
+    display: inline-block;
+}

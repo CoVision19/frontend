@@ -74,3 +74,13 @@ export function sortDataByCountryUID(data, countriesData) {
     }
     return res;
 }
+
+export function createOptions(countryData) {
+    let res = [];
+
+    if (isEmpty(countryData))
+        return res;
+    for (let key in countryData)
+        res.push({ value: key, label: key});
+    return res;
+}
