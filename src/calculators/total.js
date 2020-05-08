@@ -107,6 +107,5 @@ export function calculateTotalForTop5(data, countryList) {
         res.Infected.push(elem.Infected);
         res.Recovered.push(elem.Recovered);
     });
-    console.log(res);
     return res;
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import './Page.css';
 import Header from './Header';
 import GlobalDash from './GlobalDash';
+import CountryDash from './CountryDash';
 
 const API_URL = 'https://api.covision19.thedoux.fr';
 
@@ -10,13 +11,21 @@ export default class Page extends React.Component {
         super(props);
 
         this.updateDate = this.updateDate.bind(this);
+        this.changePage = this.changePage.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
         this.state = {
             data: {},
             countries: [],
             from: undefined,
-            to: undefined
+            to: undefined,
+            showGlobal: true
         };
+    }
+
+    changePage() {
+        this.setState({
+            showGlobal: !this.state.showGlobal
+        });
     }
 
     // This function is sent to the "Header.js" component,
@@ -26,7 +35,7 @@ export default class Page extends React.Component {
             from: from,
             to: to,
             isLoading: true
-        }, this.componentDidMount)
+        }, this.componentDidMount);
     }
 
     formatDateISOtoYMD(date) {
@@ -60,10 +69,14 @@ export default class Page extends React.Component {
     }
 
     render() {
+        let content = <CountryDash dataCache={this.state.data} countryCache={this.state.countries}/>
+        if (this.state.showGlobal)
+            content = <GlobalDash dataCache={this.state.data} countryCache={this.state.countries}/>
+
         return (
             <div>
-                <Header updateDateCallback={ this.updateDate } LoaderVisible={ this.state.isLoading } />
-                <GlobalDash dataCache={this.state.data} countryCache={this.state.countries}/>
+                <Header updateDateCallback={ this.updateDate } changePageCallback={ this.changePage } LoaderVisible={ this.state.isLoading } />
+                {content}
             </div>
         );
     }
