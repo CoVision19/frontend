@@ -89,15 +89,15 @@ export default class CountryDash extends React.Component {
                 </div>
 
                 <div className="Country-row">
-                    <div className="Subtitle">Infected People</div>
+                    <div className="Subtitle">Total infections</div>
                     <MyLine data={lines} height={350}/>
                 </div>
                 <div className="Country-row">
-                    <div className="Subtitle">Active People</div>
+                    <div className="Subtitle">Active cases</div>
                     <MyLine data={lines2} height={350}/>
                 </div>
                 <div className="Country-row">
-                    <div className="Subtitle">Recovered People</div>
+                    <div className="Subtitle">Recoveries</div>
                     <MyLine data={lines3} height={350}/>
                 </div>
                 <div className="Country-row">

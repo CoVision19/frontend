@@ -135,7 +135,7 @@ export default class GlobalDash extends React.Component {
         return (
             <div className="Body">
                 <div className="Body-title">
-                    Whole&nbsp;World
+                    Global&nbsp;Statistics
                 </div>
                 <div className="Body-row">
                     <div className="Body-5-cell">
@@ -145,25 +145,25 @@ export default class GlobalDash extends React.Component {
                         <div className="BigNumber">
                             <NumericLabel params={optionBlue}>{totals.TotalConfirmed}</NumericLabel>
                         </div>
-                        <br /><br />Infected persons in the world
+                        <br /><br />Total Infections
                     </div>
                     <div className="Body-5-cell YellowText">
                         <div className="BigNumber">
                             +<NumericLabel params={optionYel}>{rates.ConfirmedRate}</NumericLabel>
                         </div>
-                        <br /><br />New infected persons today
+                        <br /><br />Infections Today
                     </div>
                     <div className="Body-5-cell GreenText">
                         <div className="BigNumber">
                             +<NumericLabel params={optionGreen}>{rates.RecoveredRate}</NumericLabel>
                         </div>
-                        <br /><br />Recovered patients today
+                        <br /><br />Recoveries Today
                     </div>
                     <div className="Body-5-cell RedText">
                         <div className="BigNumber">
                             +<NumericLabel params={optionRed}>{rates.DeathsRate}</NumericLabel>
                         </div>
-                        <br /><br />People died today
+                        <br /><br />Deaths Today
                     </div>
                 </div>
 
@@ -172,7 +172,7 @@ export default class GlobalDash extends React.Component {
                 </div>
 
                 <div className="Body-subtitle">
-                    Top 5 Infected Countries
+                    Global Top 5 (sorted by infected)
                 </div>
                 <div className="Body-row">
                     <div className="Body-4-cell">
