@@ -28,7 +28,7 @@ export default class Page extends React.Component {
         this.setState({
             isLoading: true,
             showGlobal: !this.state.showGlobal
-        }, () => {console.log(this.state);});
+        });
     }
 
     disableLoading() {
@@ -78,9 +78,10 @@ export default class Page extends React.Component {
     }
 
     render() {
-        let content = <CountryDash dataCache={this.state.data} countryCache={this.state.countries} disableLoadingCallback={this.disableLoading}/>
         if (this.state.showGlobal)
-            content = <GlobalDash dataCache={this.state.data} countryCache={this.state.countries} disableLoadingCallback={this.disableLoading}/>
+            var content = <GlobalDash dataCache={this.state.data} countryCache={this.state.countries} disableLoadingCallback={this.disableLoading}/>
+        else
+            var content = <CountryDash dataCache={this.state.data} countryCache={this.state.countries} disableLoadingCallback={this.disableLoading}/>
 
         return (
             <div>

@@ -72,6 +72,5 @@ export function sortDataByCountryUID(data, countriesData) {
     for (let key in res) {
         res[key].rates = calculateRatesPerCountry(res[key].days);
     }
-    console.log(res);
     return res;
 }
