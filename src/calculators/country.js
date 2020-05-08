@@ -11,7 +11,6 @@ function getCountryNameByUID(countryUID, countryList) {
 function calculateRatesPerCountry(days) {
     let previousDayData = [0, 0, 0];
     let firstRound = true;
-    let infectedRates = [];
     let recovRates = [];
     let deathsRates = [];
     let activeRates = [];

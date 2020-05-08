@@ -78,10 +78,11 @@ export default class Page extends React.Component {
     }
 
     render() {
+        var content = null;
         if (this.state.showGlobal)
-            var content = <GlobalDash dataCache={this.state.data} countryCache={this.state.countries} disableLoadingCallback={this.disableLoading}/>
+            content = <GlobalDash dataCache={this.state.data} countryCache={this.state.countries} disableLoadingCallback={this.disableLoading}/>
         else
-            var content = <CountryDash dataCache={this.state.data} countryCache={this.state.countries} disableLoadingCallback={this.disableLoading}/>
+            content = <CountryDash dataCache={this.state.data} countryCache={this.state.countries} disableLoadingCallback={this.disableLoading}/>
 
         return (
             <div>

@@ -9,6 +9,7 @@
     "chart.js": "^2.9.3",
     "moment": "^2.24.0",
     "numeral": "^2.0.6",
+    "randomcolor": "^0.5.4",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.9.0",
     "react-day-picker": "^7.4.0",

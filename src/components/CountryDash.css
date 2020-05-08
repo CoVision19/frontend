@@ -26,3 +26,17 @@
     width: 30%;
     display: inline-block;
 }
+
+.Subtitle {
+    font-size: 2.3vw;
+    padding-bottom: 1%;
+}
+
+.Country-row {
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    display: inline-block;
+    width: 94%;
+}
