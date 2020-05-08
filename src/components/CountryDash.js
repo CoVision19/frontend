@@ -41,10 +41,9 @@ export default class CountryDash extends React.Component {
     createLinesData(options, countries, keyWord, colors) {
         let datasets = [];
         let days = [];
-        if (options === null)
+        if (options === null || options.length <= 0)
             return {};
         let iColors = 0;
-        console.log(colors);
         for (let key in countries[options[0].label].days)
             days.push(key);
         options.forEach(elem => {
