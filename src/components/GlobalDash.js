@@ -151,19 +151,19 @@ export default class GlobalDash extends React.Component {
                         <div className="BigNumber">
                             +<NumericLabel params={optionYel}>{rates.ConfirmedRate}</NumericLabel>
                         </div>
-                        <br /><br />Infections Today
+                        <br /><br />Average Infections per Day
                     </div>
                     <div className="Body-5-cell GreenText">
                         <div className="BigNumber">
                             +<NumericLabel params={optionGreen}>{rates.RecoveredRate}</NumericLabel>
                         </div>
-                        <br /><br />Recoveries Today
+                        <br /><br />Average Recoveries per Day
                     </div>
                     <div className="Body-5-cell RedText">
                         <div className="BigNumber">
                             +<NumericLabel params={optionRed}>{rates.DeathsRate}</NumericLabel>
                         </div>
-                        <br /><br />Deaths Today
+                        <br /><br />Average Deaths per Day
                     </div>
                 </div>
 
