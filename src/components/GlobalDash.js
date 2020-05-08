@@ -6,22 +6,7 @@ import MyBar from './bar';
 import PieGlobalStats from './pie';
 import MyLine from './line';
 import { calculateRates } from '../calculators/rates';
-import { calculateTotalValue, calculateTotalForEachDay } from '../calculators/total';
-
-const barDataExample = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    datasets: [
-      {
-        label: 'My First dataset',
-        backgroundColor: 'rgba(255,99,132,0.2)',
-        borderColor: 'rgba(255,99,132,1)',
-        borderWidth: 1,
-        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-        hoverBorderColor: 'rgba(255,99,132,1)',
-        data: [65, 59, 80, 81, 56, 55, 40]
-      }
-    ]
-};
+import { calculateTotalValue, calculateTotalForEachDay, calculateTotalForTop5 } from '../calculators/total';
 
 export default class GlobalDash extends React.Component {
 
@@ -30,6 +15,7 @@ export default class GlobalDash extends React.Component {
         const totals = calculateTotalValue(this.props.dataCache);
         const totalActive = totals.TotalConfirmed - (totals.TotalRecovered + totals.TotalDeaths);
         const totalPerDay = calculateTotalForEachDay(this.props.dataCache);
+        const top5 = calculateTotalForTop5(this.props.dataCache, this.props.countryCache)
         
         const pieTotalsData = {
             labels: [
@@ -85,6 +71,62 @@ export default class GlobalDash extends React.Component {
               }
             ]
         };
+        const barDataInfected = {
+            labels: top5.countries,
+            datasets: [
+              {
+                label: 'Infected',
+                backgroundColor: 'rgba(120,165,255,0.6)',
+                borderColor: 'rgba(120,165,255,1)',
+                borderWidth: 1,
+                hoverBackgroundColor: 'rgba(120,165,255,1)',
+                hoverBorderColor: 'rgba(120,165,255,1)',
+                data: top5.Infected
+              }
+            ]
+        };
+        const barDataActive = {
+            labels: top5.countries,
+            datasets: [
+              {
+                label: 'Active',
+                backgroundColor: 'rgba(255,205,94,0.6)',
+                borderColor: 'rgba(255,205,94,1)',
+                borderWidth: 1,
+                hoverBackgroundColor: 'rgba(255,205,94,1)',
+                hoverBorderColor: 'rgba(255,205,94,1)',
+                data: top5.Active
+              }
+            ]
+        };
+        const barDataDeaths = {
+            labels: top5.countries,
+            datasets: [
+              {
+                label: 'Deaths',
+                backgroundColor: 'rgba(255,145,197,0.6)',
+                borderColor: 'rgba(255,145,197,1)',
+                borderWidth: 1,
+                hoverBackgroundColor: 'rgba(255,145,197,1)',
+                hoverBorderColor: 'rgba(255,145,197,1)',
+                data: top5.Deaths
+              }
+            ]
+        };
+        const barDataRecovered = {
+            labels: top5.countries,
+            datasets: [
+              {
+                label: 'Recovered',
+                backgroundColor: 'rgba(107,255,110,0.6)',
+                borderColor: 'rgba(107,255,110,1)',
+                borderWidth: 1,
+                hoverBackgroundColor: 'rgba(107,255,110,1)',
+                hoverBorderColor: 'rgba(107,255,110,1)',
+                data: top5.Recovered
+              }
+            ]
+        };
 
         return (
             <div className="Body">
@@ -117,18 +159,21 @@ export default class GlobalDash extends React.Component {
                     <MyLine data={lineData} height={400}/>
                 </div>
 
+                <div className="Body-subtitle">
+                    Top 5 Infected Countries
+                </div>
                 <div className="Body-row">
                     <div className="Body-4-cell">
-                        <MyBar data={barDataExample} height={250}/>
+                        <MyBar data={barDataInfected} height={300}/>
                     </div>
                     <div className="Body-4-cell">
-                        <MyBar data={barDataExample} height={250}/>
+                        <MyBar data={barDataActive} height={300}/>
                     </div>
                     <div className="Body-4-cell">
-                        <MyBar data={barDataExample} height={250}/>
+                        <MyBar data={barDataRecovered} height={300}/>
                     </div>
                     <div className="Body-4-cell">
-                        <MyBar data={barDataExample} height={250}/>
+                        <MyBar data={barDataDeaths} height={300}/>
                     </div>
                 </div>
             </div>

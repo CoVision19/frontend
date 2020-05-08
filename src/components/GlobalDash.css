@@ -10,7 +10,14 @@
 .Body-title {
     font-size: 2.5vw;
     text-align: center;
-    padding-top: 1%;
+    padding-top: 6%;
+    padding-bottom: 0%;
+}
+
+.Body-subtitle {
+    font-size: 2.5vw;
+    text-align: center;
+    padding-top: 0%;
     padding-bottom: 0%;
 }
 
