@@ -46,7 +46,7 @@ export function sortDataByCountryUID(data, countriesData) {
         for (let countryIndex in data[dayIndex]) {
             let countryName = getCountryNameByUID(data[dayIndex][countryIndex].UID, countriesData);
             if (countryName === null)
-                return;
+                continue;
             countryName = countryName.Country_Region;
 
             if (!(countryName in res)) {
